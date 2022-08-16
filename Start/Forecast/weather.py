@@ -5,7 +5,7 @@ import requests
 from tkinter import *
 from tkinter import messagebox
 from time import gmtime, strftime
-#from PIL import Image #пока не удалось все компоненты этой библиотеки загрузить
+from PIL import Image, ImageTk
 
 root = Tk()
 root.title("Прогноз погоды")
@@ -47,12 +47,19 @@ def Yandex():
     
     time = strftime("%d-%m-%y %H:%M:%S", gmtime())
     
-    box = messagebox.showinfo("Прогноз погоды","Сегодня" +  time  + "в городе " + n + "температура" + a + d + c + k + e) 
+    box = messagebox.showinfo("Прогноз погоды","Сегодня  " +  time  + "  в городе  " + n + "  температура  " +  a +  d +  c +  k  +  e) 
     
     city.delete(first=0,last=10000)
     
 Button(root, text="Запросить данные погоды", command=Yandex).pack(pady=13)
 Label(root,text="DISNEY prodaction",fg="white", bg ="lightblue").pack(pady=16)
+
+canvas = Canvas(root,width=380,height=380)
+canvas.pack()
+show = Image.open("/Users/mac/Desktop/Exam/Start/Forecast/picture.jpeg")
+photo = ImageTk.PhotoImage(show)
+result = canvas.create_image(340,270,image=photo)
+#canvas.grid(row=5,column=1)
 
 root.mainloop()
 
